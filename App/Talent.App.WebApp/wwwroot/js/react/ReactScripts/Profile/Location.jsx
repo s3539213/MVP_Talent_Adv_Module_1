@@ -2,6 +2,7 @@
 import Cookies from 'js-cookie'
 import { default as Countries } from '../../../../util/jsonFiles/countries.json';
 import { ChildSingleInput } from '../Form/SingleInput.jsx';
+import { Popup, Input } from 'semantic-ui-react';
 
 export class Address extends React.Component {
     constructor(props) {
@@ -12,6 +13,10 @@ export class Address extends React.Component {
 
    
     render() {
+        return(
+
+            <Input></Input>
+        )
        
     }
 
@@ -25,7 +30,10 @@ export class Nationality extends React.Component {
 
     
     render() {
+        return(
 
+            <Input></Input>
+        )
         
     }
 }

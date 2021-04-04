@@ -59,7 +59,7 @@ namespace Talent.Services.Profile.Controllers
             IRepository<UserLocation> userLocationRepository,
             IRepository<Employer> employerRepository,
             IRepository<UserDocument> userDocumentRepository,
-            IRepository<Recruiter> recruiterRepository,
+     chrome://vivaldi-webui/startpage?section=Speed-dials&activeSpeedDialIndex=0&background-color=#212329       IRepository<Recruiter> recruiterRepository,
             IHostingEnvironment environment,
             IAwsService awsService,
             IUserAppContext userAppContext)
