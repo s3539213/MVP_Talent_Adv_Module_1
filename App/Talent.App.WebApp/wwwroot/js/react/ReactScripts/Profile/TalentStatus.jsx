@@ -10,6 +10,8 @@ export default class TalentStatus extends React.Component {
     }
     
     render() {
-        
+        return(
+            <b>talent status</b>
+        )
     }
 }
