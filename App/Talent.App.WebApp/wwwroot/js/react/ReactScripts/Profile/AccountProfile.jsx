@@ -34,10 +34,10 @@ export default class AccountProfile extends React.Component {
                 visaStatus: '',
                 visaExpiryDate: '',
                 profilePhoto: '',
-                linkedAccounts: {
-                    linkedIn: "",
-                    github: ""
-                },
+                // linkedAccounts: {
+                //     linkedIn: "",
+                //     github: ""
+                // },
                 jobSeekingStatus: {
                     status: "",
                     availableDate: null
@@ -135,6 +135,12 @@ export default class AccountProfile extends React.Component {
             email: this.state.profileData.email,
             phone: this.state.profileData.phone
         }
+
+        const socialMedia = {
+            linkedInUrl: this.state.profileData.linkedIn,
+            githubUrl: this.state.profileData.github
+        }
+
         return (
             <BodyWrapper reload={this.loadData} loaderData={this.state.loaderData}>
                 <section className="page-body">
@@ -149,6 +155,7 @@ export default class AccountProfile extends React.Component {
                                         >
                                             <SocialMediaLinkedAccount
                                                 linkedAccounts={this.state.profileData.linkedAccounts}
+                                                details={socialMedia}
                                                 updateProfileData={this.updateWithoutSave}
                                                 saveProfileData={this.updateAndSaveData}
                                             />
@@ -170,6 +177,7 @@ export default class AccountProfile extends React.Component {
                                                 addressData={this.state.profileData.address}
                                                 updateProfileData={this.updateWithoutSave}
                                                 saveProfileData={this.updateAndSaveData}
+                                                
                                             />
                                         </FormItemWrapper>
                                         <FormItemWrapper

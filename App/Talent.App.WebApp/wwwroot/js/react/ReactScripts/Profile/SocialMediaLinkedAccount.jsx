@@ -5,20 +5,19 @@ import { Popup, Button, Icon } from 'semantic-ui-react';
 
 export default class SocialMediaLinkedAccount extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
 
-        const accountUrl = props.details ?
+        const details = props.details ?
             Object.assign({}, props.details)
             : {
                 linkedInUrl: "",
                 githubUrl: ""
             }
 
-
-        this.state={
+        this.state=  {
 
             showEditSelection: false,
-            newLinkedAccount: accountUrl
+            newLinkedAccount: details
         }
 
         this.openEdit = this.openEdit.bind(this)
@@ -27,21 +26,36 @@ export default class SocialMediaLinkedAccount extends React.Component {
         this.saveLinkedAccount = this.saveLinkedAccount.bind(this)
         this.renderEdit = this.renderEdit.bind(this)
         this.renderDisplay = this.renderDisplay.bind(this)
+
+
+        this.showLink1 = this.showLink1.bind(this)
+        this.showLink2 = this.showLink2.bind(this)
+    }
+
+    showLink1(){
+        let linkedInLink = this.props.details ? this.props.details.linkedInUrl: ""
+        console.log("link1: " +linkedInLink)
+    }
+
+    showLink2(){
+        let githubLink = this.props.details ? this.props.details.githubUrl: ""
+        console.log("link2: " + githubLink)
     }
 
     handleChange(event) {
         const data = Object.assign({}, this.state.newLinkedAccount)
         data[event.target.name] = event.target.value
+        
         this.setState({
             newLinkedAccount: data
         })
     }
 
     openEdit() {
-        const accountUrl = Object.assign({}, this.props.details)
+        const details = Object.assign({}, this.props.details)
         this.setState({
             showEditSection: true,
-            newLinkedAccount: accountUrl
+            newLinkedAccount: details
         })
     }
 
@@ -60,8 +74,11 @@ export default class SocialMediaLinkedAccount extends React.Component {
         
         console.log(this.state.newLinkedAccount)
         const data = Object.assign({}, this.state.newLinkedAccount)
-        this.props.saveProfileData( data)
+        this.props.saveProfileData(data)
+        console.log(this.props.details)
         this.closeEdit()
+
+
     }
 
     render(){
@@ -76,7 +93,7 @@ export default class SocialMediaLinkedAccount extends React.Component {
                 <ChildSingleInput
                     inputType="text"
                     label="LinkedIn"
-                    name="linkedin"
+                    name="linkedInUrl"
                     value={this.state.newLinkedAccount.linkedInUrl}
                     controlFunc={this.handleChange}
                     maxLength={250}
@@ -86,8 +103,8 @@ export default class SocialMediaLinkedAccount extends React.Component {
                 <ChildSingleInput
                     inputType="text"
                     label="GitHub"
-                    name="github"
-                    value={this.state.newLinkedAccount.githubInUrl}
+                    name="githubUrl"
+                    value={this.state.newLinkedAccount.githubUrl}
                     controlFunc={this.handleChange}
                     maxLength={250}
                     placeholder="Enter your GitHub URL"
@@ -104,15 +121,20 @@ export default class SocialMediaLinkedAccount extends React.Component {
     }
 
     renderDisplay() {
+
+        
+
         return(
             <div className = "row">
                 <div className = "ui sixteen wide column">
-                    <Button color='linkedin'>
+                    
+                    <button type="button" className="ui blue button" onClick={this.showLink1}>
                         <Icon name='linkedin' /> LinkedIn
-                    </Button>
-                    <Button color='black'>
+                    </button>
+
+                    <button type="button" className="ui black button" onClick={this.showLink2}>
                         <Icon name='github' /> Github
-                    </Button>
+                    </button>
                     <Button className="ui right floated teal button" floated="right" onClick={this.openEdit}>
                         Edit
                     </Button>

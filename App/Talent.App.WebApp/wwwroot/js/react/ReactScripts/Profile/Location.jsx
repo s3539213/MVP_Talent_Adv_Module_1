@@ -63,8 +63,7 @@ export class Address extends React.Component {
         data[event.target.name] = event.target.value
         console.log(data);
         this.setState({
-            newAddress: data,
-            country: data
+            newAddress: data
         })
     }
 
@@ -72,7 +71,8 @@ export class Address extends React.Component {
         
         console.log(this.state.newAddress)
         const data = Object.assign({}, this.state.newAddress)
-        this.props.saveProfileData(data)
+        this.props.controlFunc(this.props.componentId, data)
+        // this.props.saveProfileData(data)
         this.closeEdit()
     }
 
@@ -98,6 +98,7 @@ export class Address extends React.Component {
         }
 
         console.log("country: " + selectedCountry);
+        console.log("city: " + selectedCity);
         countriesOptions = Object.keys(Countries).map((x) => <option key={x} value={x}>{x}</option>);
 
         if (selectedCountry != "" && selectedCountry != null) {
@@ -117,7 +118,6 @@ export class Address extends React.Component {
                 </select>
             </span>
 
-            console.log(selectedCountry);
         }
 
 
@@ -204,6 +204,11 @@ export class Address extends React.Component {
     }
 
     renderDisplay(){
+        let addr = this.props.addressData ? this.props.addressData.number : ""
+
+        console.log(addr)
+
+
         return(
             <div className='row'>
                 <div className="ui sixteen wide column">
